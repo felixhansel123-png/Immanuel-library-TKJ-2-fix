@@ -3,7 +3,8 @@ require_once __DIR__ . "/../../repositories/book-repository.php";
 require_once __DIR__ . "/../../repositories/category-repository.php";
 require_once __DIR__ . "/../../repositories/author-repository.php";
 
-$book = getBook();
+$id = $_GET['id'];
+$book = getBook($id);
 $categories = getCategories();
 $authors = getAuthors();
 
@@ -13,18 +14,20 @@ $pageSubtitle = "Perbarui data buku, kategori, dan penulis";
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Buku - Perpustakaan Digital</title>
   <link rel="stylesheet" href="../../styles/books/edit.css">
 </head>
+
 <body>
   <div class="app-shell">
-  <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
+    <?php require_once __DIR__ . "/../../components/admin/sidebar.php" ?>
 
     <main class="app-main">
-    <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
+      <?php require_once __DIR__ . "/../../components/admin/topbar.php" ?>
 
       <div class="app-content">
         <form method="POST" action="../../actions/books/update.php">
@@ -54,7 +57,9 @@ $pageSubtitle = "Perbarui data buku, kategori, dan penulis";
                 <label for="category_id">Kategori</label>
                 <select id="category_id" name="category_id">
                   <?php foreach ($categories as $category): ?>
-                    <option value="<?= $category['id'] ?>" <?= $category['id'] === $book['category_id'] ? 'selected' : '' ?>><?= $category['name'] ?></option>
+                    <option value="<?= $category['id'] ?>" <?= $category['id'] === $book['category_id'] ? 'selected' : '' ?>>
+                      <?= $category['name'] ?>
+                    </option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -89,4 +94,5 @@ $pageSubtitle = "Perbarui data buku, kategori, dan penulis";
     </main>
   </div>
 </body>
+
 </html>
