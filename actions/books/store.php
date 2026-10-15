@@ -42,7 +42,7 @@ if (isset($_POST['store']) && $_SERVER['REQUEST_METHOD'] === "POST") {
         exit;
 
     } catch (PDOException $e) {
-        $pdb->rollBack();
+        $pdo->rollBack();
         throw $e;
     }
 }
