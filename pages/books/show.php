@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../../repositories/book-repository.php";
-
+$id = $_GET["id"];
 $book = getBook($id);
 
 $pageTitle = "Detail Buku";
