@@ -69,15 +69,12 @@ function getBook($id)
   $stmt = $pdo->prepare($query);
 
   $stmt->execute([
-
     'book_id' => $book['id']
-
   ]);
 
   $authorIds = $stmt->fetchAll();
 
   $book['author_ids'] = array_column($authorIds, 'id');
-
 
   return $book;
 }
