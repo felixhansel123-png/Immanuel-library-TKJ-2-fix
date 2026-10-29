@@ -1,5 +1,7 @@
 <?php
-session_start();
+require_once __DIR__ . "/../../middleware/auth.php";
+sessionStart();
+requireGuest();
 
 $success = $_SESSION['success'] ?? '';
 $errors = $_SESSION['errors'] ?? '';
@@ -27,13 +29,13 @@ unset($_SESSION['success'], $_SESSION['errors'], $_SESSION['old']);
       <h1>Selamat Datang Kembali</h1>
       <p class="auth-subtitle">Masuk untuk mengelola koleksi buku perpustakaan.</p>
       <?php if (isset(($success))): ?>
-        <p style="color:green; font: size 12px;margin: bottom 12px;">
+        <p style="color:green; font-size:12px;margin: bottom 12px;">
           <?= $success ?>
         </P>
       <?php endif ?>
 
       <?php if (isset($errors['login'])): ?>
-        <p style="color:red; font: size 12px;margin: bottom 12px;">
+        <p style="color:red; font-size:12px;margin: bottom 12px;">
           <?= $errors['login'] ?>
         </P>
       <?php endif ?>
